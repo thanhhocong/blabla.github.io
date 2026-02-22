@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="./main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- <audio autoplay="autopaly">
+      <source src="renxi.mp3" type="audio/mp3" />
+    </audio> -->
+    <!-- 星空html -->
+    <!-- <div> -->
+    <div class="container2">
+      <div class="content">
+        <canvas id="universe"></canvas>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="title">
+      <!-- EDIT HERE -->
+      <h3 class="STARDUST1">2024-2026</h3>
+      <h1 class="STARDUST2">THÀNH &amp; THƯ</h1>
+      <h3 class="STARDUST3">ALWAYS <strong>❤</strong> BESIDE</h3>
+      <img class="img" src="./pic.jpg" alt="" />
+      <canvas id="pinkboard"></canvas>
+    </div>
+
+    <button id="secretButton" class="secret-btn">Click Me ❤</button>
+    <div id="secretMessage" class="secret-message">
+      <div class="message-content">
+        <p id="typingText1" class="typing-text"></p>
+        <p id="typingText2" class="typing-text"></p>
+        <button id="closeMessage" class="close-btn" style="display: none;">Close</button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./main.js"></script>
+    <script src="./particle.js"></script>
+    <script src="./universe.js"></script>
+    <script>
+      // Typing animation function
+      function typeWriter(element, text, speed, callback) {
+        let i = 0;
+        element.textContent = '';
+        element.style.opacity = '1';
+        element.classList.add('typing');
+        
+        function type() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          } else {
+            element.classList.remove('typing');
+            if (callback) {
+              callback();
+            }
+          }
+        }
+        type();
+      }
+      
+      // Button click handler
+      document.getElementById('secretButton').addEventListener('click', function() {
+        const message = document.getElementById('secretMessage');
+        const text1 = document.getElementById('typingText1');
+        const text2 = document.getElementById('typingText2');
+        const closeBtn = document.getElementById('closeMessage');
+        
+        // Reset
+        text1.textContent = '';
+        text2.textContent = '';
+        text1.style.opacity = '0';
+        text2.style.opacity = '0';
+        text1.classList.remove('typing');
+        text2.classList.remove('typing');
+        closeBtn.style.display = 'none';
+        
+        // Show message
+        message.style.display = 'flex';
+        
+        // Start typing animations
+        setTimeout(() => {
+          typeWriter(text1, 'Bí mật nhỏ nè 🤫', 80, () => {
+            setTimeout(() => {
+              typeWriter(text2, 'Anh yêu em nhiều hơn hôm qua đấy.', 60, () => {
+                setTimeout(() => {
+                  closeBtn.style.display = 'inline-block';
+                  closeBtn.style.animation = 'fadeIn 0.5s ease';
+                }, 300);
+              });
+            }, 500);
+          });
+        }, 300);
+      });
+      
+      document.getElementById('closeMessage').addEventListener('click', function() {
+        document.getElementById('secretMessage').style.display = 'none';
+      });
+    </script>
+  </body>
+</html>
